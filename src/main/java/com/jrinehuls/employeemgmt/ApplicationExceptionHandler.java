@@ -20,7 +20,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         for (ObjectError error : ex.getBindingResult().getAllErrors()) {
             messages.add(error.getDefaultMessage());
         }
-        ErrorResponse errorResponse = new ErrorResponse();
-        return new ResponseEntity<>(messages, HttpStatus.BAD_REQUEST);
+        ErrorResponse errorResponse = new ErrorResponse(messages);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

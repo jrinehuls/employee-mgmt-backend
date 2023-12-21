@@ -2,6 +2,7 @@ package com.jrinehuls.employeemgmt.controller;
 
 import com.jrinehuls.employeemgmt.dto.EmployeeDto;
 import com.jrinehuls.employeemgmt.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping()
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
         return new ResponseEntity<>(employeeService.createEmployee(employeeDto), HttpStatus.CREATED);
     }
 }
