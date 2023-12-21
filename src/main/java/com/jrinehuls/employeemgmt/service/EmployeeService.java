@@ -4,5 +4,5 @@ import com.jrinehuls.employeemgmt.dto.EmployeeDto;
 
 public interface EmployeeService {
 
-    public EmployeeDto saveEmployee(EmployeeDto employeeDto);
+    public EmployeeDto createEmployee(EmployeeDto employeeDto);
 }

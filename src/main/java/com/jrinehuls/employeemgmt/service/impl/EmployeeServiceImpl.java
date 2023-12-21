@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    EmployeeRepository employeeRepository;
-    EmployeeMapper employeeMapper;
+    private EmployeeRepository employeeRepository;
+    private EmployeeMapper employeeMapper;
 
 
     @Override
-    public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
+    public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         Employee employee = employeeMapper.mapDtoToEmployee(employeeDto);
         Employee savedEmployee = employeeRepository.save(employee);
         return employeeMapper.mapEmployeeToDto(savedEmployee);
