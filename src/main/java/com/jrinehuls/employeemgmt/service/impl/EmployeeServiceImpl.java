@@ -3,6 +3,7 @@ package com.jrinehuls.employeemgmt.service.impl;
 import com.jrinehuls.employeemgmt.dto.EmployeeDto;
 import com.jrinehuls.employeemgmt.entity.Employee;
 import com.jrinehuls.employeemgmt.exception.EmployeeConflictException;
+import com.jrinehuls.employeemgmt.exception.EmployeeNotFoundException;
 import com.jrinehuls.employeemgmt.mapper.EmployeeMapper;
 import com.jrinehuls.employeemgmt.repository.EmployeeRepository;
 import com.jrinehuls.employeemgmt.service.EmployeeService;
@@ -29,5 +30,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeConflictException(message);
         }
         return employeeMapper.mapEmployeeToDto(savedEmployee);
+    }
+
+    @Override
+    public EmployeeDto getEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+        return employeeMapper.mapEmployeeToDto(employee);
     }
 }

@@ -2,6 +2,7 @@ package com.jrinehuls.employeemgmt;
 
 import com.jrinehuls.employeemgmt.dto.error.ErrorResponse;
 import com.jrinehuls.employeemgmt.exception.EmployeeConflictException;
+import com.jrinehuls.employeemgmt.exception.EmployeeNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,7 +20,14 @@ import java.util.ArrayList;
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EmployeeConflictException.class)
-    protected ResponseEntity<ErrorResponse> handleEmployeeCollisionException(EmployeeConflictException ex) {
+    protected ResponseEntity<ErrorResponse> handleEmployeeConflictException(EmployeeConflictException ex) {
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add(ex.getMessage());
+        return new ResponseEntity<>(new ErrorResponse(messages), ex.getStatusCode());
+    }
+
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    protected ResponseEntity<ErrorResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
         ArrayList<String> messages = new ArrayList<>();
         messages.add(ex.getMessage());
         return new ResponseEntity<>(new ErrorResponse(messages), ex.getStatusCode());
