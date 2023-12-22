@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/employee")
 @AllArgsConstructor
@@ -23,6 +25,11 @@ public class EmployeeController {
     @GetMapping("{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
         return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<EmployeeDto>> getEmployees() {
+        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
     }
 
 }
