@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class ErrorResponse {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy HH:mm:ss")
-    LocalDateTime timeStamp;
+    LocalDateTime timestamp;
     ArrayList<String> messages;
 
     public ErrorResponse(ArrayList<String> messages) {
         this.messages = messages;
-        this.timeStamp = LocalDateTime.now();
+        this.timestamp = LocalDateTime.now();
     }
 
     public ArrayList<String> getMessages() {
@@ -24,11 +24,11 @@ public class ErrorResponse {
         this.messages = messages;
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }

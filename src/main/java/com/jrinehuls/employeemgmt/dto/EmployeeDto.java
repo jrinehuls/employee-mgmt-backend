@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmployeeDto {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @NotNull(message = "first_name cannot be null")
@@ -33,10 +34,5 @@ public class EmployeeDto {
     @NotBlank(message = "email cannot be blank")
     @JsonProperty(value="email")
     private String email;
-
-    @JsonIgnore
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }
