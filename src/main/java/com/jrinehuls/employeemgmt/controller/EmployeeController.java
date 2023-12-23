@@ -18,7 +18,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping()
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
+    public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         return new ResponseEntity<>(employeeService.createEmployee(employeeDto), HttpStatus.CREATED);
     }
 
@@ -30,6 +30,11 @@ public class EmployeeController {
     @GetMapping("/all")
     public ResponseEntity<List<EmployeeDto>> getEmployees() {
         return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto, @PathVariable Long id) {
+        return new ResponseEntity<>(employeeService.updateEmployee(employeeDto, id), HttpStatus.OK);
     }
 
 }

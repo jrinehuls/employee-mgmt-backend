@@ -30,8 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             savedEmployee = employeeRepository.save(employee);
         } catch (DataIntegrityViolationException e) {
-            String message = e.getLocalizedMessage().split("\\*/ '", 2)[1].split("'", 2)[0];
-            throw new EmployeeConflictException(message);
+            throw new EmployeeConflictException(this.getDataIntegrityMessage(e));
         }
         return employeeMapper.mapEmployeeToDto(savedEmployee);
     }
@@ -47,5 +46,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream().map(employee -> employeeMapper.mapEmployeeToDto(employee))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+        employee.setFirstName(employeeDto.getFirstName());
+        employee.setLastName(employeeDto.getLastName());
+        employee.setEmail(employeeDto.getEmail());
+        try {
+            Employee updatedEmployee = employeeRepository.save(employee);
+            return employeeMapper.mapEmployeeToDto(updatedEmployee);
+        } catch (DataIntegrityViolationException e) {
+            throw new EmployeeConflictException(this.getDataIntegrityMessage(e));
+        }
+    }
+
+
+    private String getDataIntegrityMessage(DataIntegrityViolationException e) {
+        return e.getLocalizedMessage().split("\\*/ '", 2)[1].split("'", 2)[0];
     }
 }
