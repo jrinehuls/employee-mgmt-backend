@@ -62,6 +62,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
+    @Override
+    public void deleteEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+        employeeRepository.deleteById(employee.getId());
+    }
+
 
     private String getDataIntegrityMessage(DataIntegrityViolationException e) {
         return e.getLocalizedMessage().split("\\*/ '", 2)[1].split("'", 2)[0];

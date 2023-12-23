@@ -13,4 +13,6 @@ public interface EmployeeService {
     public List<EmployeeDto> getEmployees();
 
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id);
+
+    public void deleteEmployee(Long id);
 }
