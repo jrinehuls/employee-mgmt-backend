@@ -18,20 +18,20 @@ public class EmployeeDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
-    @NotNull(message = "first name cannot be null")
-    @NotBlank(message = "first name cannot be blank")
-    @JsonProperty(value="first_name")
+    @NotNull(message = "First name cannot be null")
+    @NotBlank(message = "First name cannot be blank")
+    @JsonProperty(value = "first_name")
     private String firstName;
 
-    @NotNull(message = "last name cannot be null")
-    @NotBlank(message = "last name cannot be blank")
-    @JsonProperty(value="last_name")
+    @NotNull(message = "Last name cannot be null")
+    @NotBlank(message = "Last name cannot be blank")
+    @JsonProperty(value = "last_name")
     private String lastName;
 
-    @Email(message = "email must be formatted as a valid email address")
-    @NotNull(message = "email cannot be null")
-    @NotBlank(message = "email cannot be blank")
-    @JsonProperty(value="email")
+    @Email(message = "Email must be formatted as a valid email address")
+    @NotNull(message = "Email cannot be null")
+    @NotBlank(message = "Email cannot be blank")
+    @JsonProperty(value = "email")
     private String email;
 
 }
