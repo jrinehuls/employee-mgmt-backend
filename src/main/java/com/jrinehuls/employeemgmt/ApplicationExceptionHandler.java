@@ -26,20 +26,16 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(EmployeeConflictException.class)
     protected ResponseEntity<ErrorResponse> handleEmployeeConflictException(EmployeeConflictException ex) {
-        Map<String, List<String>> errors = new HashMap<>();
-        ArrayList<String> messages = new ArrayList<>();
-        messages.add(ex.getMessage());
-        errors.put("message", messages);
-        return new ResponseEntity<>(new ErrorResponse(errors), ex.getStatusCode());
+        ErrorResponse errorResponse = new ErrorResponse(null);
+        errorResponse.setMessage(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, ex.getStatusCode());
     }
 
     @ExceptionHandler(EmployeeNotFoundException.class)
     protected ResponseEntity<ErrorResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
-        Map<String, List<String>> errors = new HashMap<>();
-        ArrayList<String> messages = new ArrayList<>();
-        messages.add(ex.getMessage());
-        errors.put("message", messages);
-        return new ResponseEntity<>(new ErrorResponse(errors), ex.getStatusCode());
+        ErrorResponse errorResponse = new ErrorResponse(null);
+        errorResponse.setMessage(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, ex.getStatusCode());
     }
 
     @Override

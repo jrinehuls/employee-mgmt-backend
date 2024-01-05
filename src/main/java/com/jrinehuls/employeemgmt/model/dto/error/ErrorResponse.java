@@ -12,6 +12,7 @@ public class ErrorResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy HH:mm:ss")
     LocalDateTime timestamp;
     Map<String, List<String>> errors;
+    String message;
 
     public ErrorResponse(Map<String, List<String>> errors) {
         this.errors = errors;
@@ -32,5 +33,13 @@ public class ErrorResponse {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
