@@ -1,6 +1,6 @@
 package com.jrinehuls.employeemgmt.controller;
 
-import com.jrinehuls.employeemgmt.dto.EmployeeDto;
+import com.jrinehuls.employeemgmt.model.dto.EmployeeDto;
 import com.jrinehuls.employeemgmt.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

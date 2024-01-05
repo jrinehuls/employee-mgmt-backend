@@ -1,6 +1,6 @@
 package com.jrinehuls.employeemgmt;
 
-import com.jrinehuls.employeemgmt.dto.error.ErrorResponse;
+import com.jrinehuls.employeemgmt.model.dto.error.ErrorResponse;
 import com.jrinehuls.employeemgmt.exception.EmployeeConflictException;
 import com.jrinehuls.employeemgmt.exception.EmployeeNotFoundException;
 import org.springframework.http.HttpHeaders;

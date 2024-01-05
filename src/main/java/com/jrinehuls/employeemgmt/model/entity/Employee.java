@@ -1,4 +1,4 @@
-package com.jrinehuls.employeemgmt.entity;
+package com.jrinehuls.employeemgmt.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package com.jrinehuls.employeemgmt.dto.error;
+package com.jrinehuls.employeemgmt.model.dto.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

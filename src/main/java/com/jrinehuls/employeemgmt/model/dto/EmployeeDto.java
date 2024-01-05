@@ -1,4 +1,4 @@
-package com.jrinehuls.employeemgmt.dto;
+package com.jrinehuls.employeemgmt.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

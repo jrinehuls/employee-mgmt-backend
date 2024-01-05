@@ -1,7 +1,7 @@
 package com.jrinehuls.employeemgmt.service.impl;
 
-import com.jrinehuls.employeemgmt.dto.EmployeeDto;
-import com.jrinehuls.employeemgmt.entity.Employee;
+import com.jrinehuls.employeemgmt.model.dto.EmployeeDto;
+import com.jrinehuls.employeemgmt.model.entity.Employee;
 import com.jrinehuls.employeemgmt.exception.EmployeeConflictException;
 import com.jrinehuls.employeemgmt.exception.EmployeeNotFoundException;
 import com.jrinehuls.employeemgmt.mapper.EmployeeMapper;
@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

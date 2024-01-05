@@ -1,6 +1,6 @@
 package com.jrinehuls.employeemgmt.service;
 
-import com.jrinehuls.employeemgmt.dto.EmployeeDto;
+import com.jrinehuls.employeemgmt.model.dto.EmployeeDto;
 
 import java.util.List;
 

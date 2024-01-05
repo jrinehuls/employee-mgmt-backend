@@ -1,7 +1,7 @@
 package com.jrinehuls.employeemgmt.mapper;
 
-import com.jrinehuls.employeemgmt.dto.EmployeeDto;
-import com.jrinehuls.employeemgmt.entity.Employee;
+import com.jrinehuls.employeemgmt.model.dto.EmployeeDto;
+import com.jrinehuls.employeemgmt.model.entity.Employee;
 
 public class EmployeeMapper {
 
