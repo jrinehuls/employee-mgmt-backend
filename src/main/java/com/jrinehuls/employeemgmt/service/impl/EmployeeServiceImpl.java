@@ -29,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             savedEmployee = employeeRepository.save(employee);
         } catch (DataIntegrityViolationException e) {
-            throw new EmployeeConflictException(this.getDataIntegrityMessage(e));
+            throw new EmployeeConflictException(employeeDto.getEmail());
         }
         return employeeMapper.mapEmployeeToDto(savedEmployee);
     }
@@ -57,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             Employee updatedEmployee = employeeRepository.save(employee);
             return employeeMapper.mapEmployeeToDto(updatedEmployee);
         } catch (DataIntegrityViolationException e) {
-            throw new EmployeeConflictException(this.getDataIntegrityMessage(e));
+            throw new EmployeeConflictException(employeeDto.getEmail());
         }
     }
 
@@ -67,8 +67,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(employee.getId());
     }
 
-
-    private String getDataIntegrityMessage(DataIntegrityViolationException e) {
-        return e.getLocalizedMessage().split("\\*/ '", 2)[1].split("'", 2)[0];
-    }
 }
