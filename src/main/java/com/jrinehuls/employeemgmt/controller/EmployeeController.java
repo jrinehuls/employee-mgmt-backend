@@ -18,9 +18,9 @@ public class EmployeeController {
 
     private EmployeeService employeeService;
 
-    @PostMapping()
-    public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-        return new ResponseEntity<>(employeeService.createEmployee(employeeDto), HttpStatus.CREATED);
+    @GetMapping("/all")
+    public ResponseEntity<List<EmployeeDto>> getEmployees() {
+        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -28,9 +28,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<EmployeeDto>> getEmployees() {
-        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+    @PostMapping()
+    public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+        return new ResponseEntity<>(employeeService.createEmployee(employeeDto), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")

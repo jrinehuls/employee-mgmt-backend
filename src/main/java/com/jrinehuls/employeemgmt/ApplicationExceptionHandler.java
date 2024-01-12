@@ -24,12 +24,6 @@ import java.util.Map;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(EmployeeConflictException.class)
-    protected ResponseEntity<ErrorResponse> handleEmployeeConflictException(EmployeeConflictException ex) {
-        ErrorResponse errorResponse = new ErrorResponse(null);
-        errorResponse.setMessage(ex.getMessage());
-        return new ResponseEntity<>(errorResponse, ex.getStatusCode());
-    }
 
     @ExceptionHandler(EmployeeNotFoundException.class)
     protected ResponseEntity<ErrorResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
@@ -38,12 +32,23 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         return new ResponseEntity<>(errorResponse, ex.getStatusCode());
     }
 
+    @ExceptionHandler(EmployeeConflictException.class)
+    protected ResponseEntity<ErrorResponse> handleEmployeeConflictException(EmployeeConflictException ex) {
+        Map<String, List<String>> errors = new HashMap<>();
+        String field = ex.getField();
+        String message = ex.getMessage();
+        errors.put(field, List.of(message));
+        return new ResponseEntity<>(new ErrorResponse(errors), ex.getStatusCode());
+    }
+
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         Map<String, List<String>> errors = new HashMap<>();
         for (ObjectError error: ex.getBindingResult().getAllErrors()) {
-            String field = ((FieldError) error).getField();
-            String message = error.getDefaultMessage();
+            FieldError fieldError = (FieldError) error;
+            String field = fieldError.getField();
+            String message = fieldError.getDefaultMessage();
 
             if (!errors.containsKey(field)) {
                 List<String> messages = new ArrayList<>();

@@ -29,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             savedEmployee = employeeRepository.save(employee);
         } catch (DataIntegrityViolationException e) {
-            throw new EmployeeConflictException(employeeDto.getEmail());
+            throw new EmployeeConflictException("email", employeeDto.getEmail());
         }
         return employeeMapper.mapEmployeeToDto(savedEmployee);
     }
@@ -57,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             Employee updatedEmployee = employeeRepository.save(employee);
             return employeeMapper.mapEmployeeToDto(updatedEmployee);
         } catch (DataIntegrityViolationException e) {
-            throw new EmployeeConflictException(employeeDto.getEmail());
+            throw new EmployeeConflictException("email", employeeDto.getEmail());
         }
     }
 
